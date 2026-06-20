@@ -11,15 +11,10 @@ var rearrangeArray = function(nums) {
         if(nums[i] < 0){
             arr2[neg] = nums[i]
             neg += 2
-        }
-        
-
-        if(nums[i] > 0){
+        }else{
             arr2[pos] = nums[i]
-             pos += 2
-        }
-        
-        
+            pos += 2
+        }   
     }
 
     return arr2
