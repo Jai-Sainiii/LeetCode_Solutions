@@ -8,18 +8,17 @@ var rearrangeArray = function(nums) {
     let neg = 1
 
     for (let i = 0; i < nums.length; i++) {
-        if(neg < nums.length){
-            if(nums[i] < 0){
-                arr2[neg] = nums[i]
-                neg += 2
-            }
+        if(nums[i] < 0){
+            arr2[neg] = nums[i]
+            neg += 2
         }
-        if(pos < nums.length){
-            if(nums[i] > 0){
-                arr2[pos] = nums[i]
-                pos += 2
-            }
+        
+
+        if(nums[i] > 0){
+            arr2[pos] = nums[i]
+             pos += 2
         }
+        
         
     }
 
