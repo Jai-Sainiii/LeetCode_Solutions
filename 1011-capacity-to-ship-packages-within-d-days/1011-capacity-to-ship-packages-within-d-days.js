@@ -5,10 +5,10 @@
  */
 var shipWithinDays = function(weights, days) {
     let minimum = Math.max(...weights)
-    let high = weights.reduce((a,b) => a+b, 0)
+    let maximum = weights.reduce((a,b) => a+b, 0)
 
-    while(minimum <= high){
-        let mid = Math.floor((minimum + high) / 2)
+    while(minimum <= maximum){
+        let mid = Math.floor((minimum + maximum) / 2)
         let currentWeight = 0
         let requiredDays = 1
 
@@ -22,7 +22,7 @@ var shipWithinDays = function(weights, days) {
         }
         
         if(requiredDays <= days){
-            high = mid - 1
+            maximum = mid - 1
         }else{
             minimum = mid + 1
         }
