@@ -19,7 +19,6 @@ var nextPermutation = function(nums) {
 
     for (let i = nums.length - 1; i > index; i--) {
         if (nums[i] > nums[index]) {
-            // Swap them
             [nums[i], nums[index]] = [nums[index], nums[i]];
             break;
         }
