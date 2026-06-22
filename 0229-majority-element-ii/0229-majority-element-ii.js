@@ -3,9 +3,6 @@
  * @return {number[]}
  */
 var majorityElement = function(nums) {
-    let min = Math.floor(nums.length / 3)
-    let numbers = []
-
     let el1 = Number.MAX_SAFE_INTEGER, el2 = Number.MIN_SAFE_INTEGER;
 
     let c1 = 0, c2 = 0;
@@ -33,6 +30,9 @@ var majorityElement = function(nums) {
         if(num === el1) c1++
         if(num === el2) c2++
     }
+
+    let numbers = []
+    let min = Math.floor(nums.length / 3)
 
     if(c1 > min){
         numbers.push(el1)
