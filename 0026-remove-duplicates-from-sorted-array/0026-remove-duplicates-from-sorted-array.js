@@ -10,7 +10,6 @@ var removeDuplicates = function(nums) {
 
     for (let right = 1; right < nums.length; right++) {
         if(nums[right] > nums[left - 1]){
-            check = nums[right];
             [nums[left], nums[right]] = [nums[right], nums[left]];
             count++
             left++;
