@@ -5,16 +5,14 @@
 var removeDuplicates = function(nums) {
     if(nums.length === 1) return 1
 
-    let count = 1
-    let left = 1;
+    let left = 0;
 
     for (let right = 1; right < nums.length; right++) {
-        if(nums[right] > nums[left - 1]){
-            [nums[left], nums[right]] = [nums[right], nums[left]];
-            count++
+        if(nums[right] !== nums[left]){
             left++;
+            [nums[left], nums[right]] = [nums[right], nums[left]];
         };
     };
 
-    return count
+    return left+1
 };
