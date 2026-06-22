@@ -24,7 +24,8 @@ var majorityElement = function(nums) {
         }
     }
 
-    c1 = 0, c2 = 0;
+    c1 = 0;
+    c2 = 0;
 
     for(const num of nums){
         if(num === el1) c1++
