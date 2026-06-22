@@ -9,11 +9,8 @@ var majorityElement = function(nums) {
 
     for(const num of nums){
         map.set(num, (map.get(num) || 0) + 1)
-    }
-
-    for(const [key, value] of map){
-        if(value > min){
-            numbers.push(key)
+        if(map.get(num) === min+1){
+            numbers.push(num)
         }
     }
 
