@@ -28,8 +28,8 @@ var reversePairs = function(nums) {
     }
 
     function countPairs(arr, low, mid, high){
-        let ctn = 0
         right = mid+1
+        let ctn = 0
         for (let i = low; i <= mid; i++) {
             while(right <= high && arr[i] > 2 * arr[right]) right++  
             ctn += right - (mid + 1)    
