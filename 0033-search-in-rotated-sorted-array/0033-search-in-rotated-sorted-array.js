@@ -4,9 +4,6 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    if(nums.length === 0 && nums[0] === target) return 0
-    else if(nums.length === 0 && nums[0] !== target) return -1
-
     low = 0
     high = nums.length-1
     while(low <= high){
