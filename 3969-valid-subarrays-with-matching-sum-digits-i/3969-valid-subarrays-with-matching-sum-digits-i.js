@@ -12,9 +12,8 @@ var countValidSubarrays = function(nums, x) {
             if(sum % 10 !== x) continue
 
             let first = sum
-            while(first >= 10){
-                first = Math.floor(first/10)
-            }
+            while(first >= 10) first = Math.floor(first/10)
+            
             if(first === x) ans++
         }
     }
