@@ -3,11 +3,8 @@
  * @return {Promise}
  */
 async function sleep(millis) {
-    let t = Date.now();
     return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(Date.now() - t)
-        }, millis)
+        setTimeout(resolve, millis)
     })
 }
 
