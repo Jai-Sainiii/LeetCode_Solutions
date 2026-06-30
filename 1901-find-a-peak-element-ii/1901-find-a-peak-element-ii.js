@@ -3,7 +3,6 @@
  * @return {number[]}
  */
 var findPeakGrid = function(mat) {
-    let ans = [-1,-1]
     function maxElement(matrix, col){
         let max = -Infinity
         let row = -1
@@ -28,5 +27,5 @@ var findPeakGrid = function(mat) {
         else if(leftVal > mat[row][mid]) high = mid-1
         else low = mid+1
     }
-    return ans
+    return -1
 };
