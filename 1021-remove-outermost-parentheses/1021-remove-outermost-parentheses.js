@@ -9,7 +9,7 @@ var removeOuterParentheses = function(s) {
         if(char === "("){
             if(level > 0) result += char
             level++
-        }else if(char === ")"){
+        }else{
             level--
             if(level > 0) result += char
         }
