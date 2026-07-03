@@ -5,25 +5,26 @@
 var myAtoi = function(s) {
     let result = ""
     let sign = 1
-    let start = false
+    let i = 0
 
-    for(const ch of s){
-        if(!start && ch === " ") continue
-        if(!start && (ch === "-" || ch === "+")){
-            sign = ch === "-" ? -1 : 1
-            start = true
-            continue
-        }
+    while(i < s.length && s[i] === " ") i++ 
 
-        if(/\d/.test(ch)){
-            start = true
-            result += ch
-        }else{
-            break
-        }
-        
-        if(sign * Number(result) < -(2 ** 31 - 1)) return -((2 ** 31))
-        if(sign * Number(result) > (2 ** 31 - 1)) return (2 ** 31 - 1)
+    if(i < s.length && (s[i] === "-" || s[i] === "+")){ 
+        sign = s[i] === "-" ? -1 : 1
+        i++
     }
-    return sign * Number(result || 0)
+
+    let num = 0
+
+    while(i < s.length && /\d/.test(s[i])){
+        num = num * 10 + Number(s[i])
+        i++
+    }
+
+    num *= sign
+
+    if(num > 2 ** 31 - 1) return 2 ** 31 - 1
+    if(num < -(2 ** 31)) return -(2 ** 31)
+
+    return num
 };
