@@ -12,16 +12,16 @@
 var middleNode = function(head) {
     let current = head
     if(current.next === null) return current
-
+    
     let count = 0
-    while(current !== null){
+    while(current){
         count++
         current = current.next
     }
     let mid = Math.floor(count/2)
 
-    count = 0
     current = head
+    count = 0
     while(count !== mid){
         count++
         current = current.next
