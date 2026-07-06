@@ -4,14 +4,14 @@
  */
 var removeCoveredIntervals = function(intervals) {
     intervals.sort((a,b) => a[0] === b[0] ? b[1] - a[1] : a[0] - b[0])
-    let arr = []
-    arr.push(intervals[0])
+    let ans = 1
+    let prev = intervals[0][1]
     for(let i = 1; i < intervals.length; i++){
-        if(intervals[i][0] >= arr[arr.length-1][0] && intervals[i][1] <= arr[arr.length-1][1]){
-            arr[arr.length-1][1] = Math.max(arr[arr.length-1][1], intervals[i][1])
-        }else{ 
-            arr.push(intervals[i])
+        if(intervals[i][1] <= prev){ 
+            continue
         }
+        prev = intervals[i][1]
+        ans++
     }
-    return arr.length
+    return ans
 };
