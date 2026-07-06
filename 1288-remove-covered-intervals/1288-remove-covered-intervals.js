@@ -3,11 +3,7 @@
  * @return {number}
  */
 var removeCoveredIntervals = function(intervals) {
-    intervals.sort((a,b) => {
-            if(a[0] === b[0]) return b[1] - a[1]
-            else return a[0] - b[0]
-        }
-    )
+    intervals.sort((a,b) => a[0] === b[0] ? b[1] - a[1] : a[0] - b[0])
     let arr = []
     arr.push(intervals[0])
     for(let i = 1; i < intervals.length; i++){
