@@ -39,7 +39,6 @@ var isPalindrome = function(head) {
 
     while(second){
         if(first.val !== second.val){
-            reverse(newHead)
             return false
         }
         first = first.next
