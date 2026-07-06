@@ -10,11 +10,41 @@
  * @return {boolean}
  */
 var isPalindrome = function(head) {
-    let stack = []
-    let current = head
-    while(current){
-        stack.push(current.val)
-        current = current.next
+    function reverse(head){
+        if(head === null || head.next === null) return head
+        let current = head
+        let prev = null
+        while(current){
+            let front = current.next
+            current.next = prev
+            prev = current
+            current = front
+        }
+        return prev
     }
-    return stack.join("") === stack.reverse().join("")
+
+    if(head === null || head.next === null) return true
+
+    let slow = head
+    let fast = head
+
+    while(fast.next && fast.next.next){
+        slow = slow.next
+        fast = fast.next.next
+    }
+
+    let first = head
+    let newHead = reverse(slow.next)
+    let second = newHead
+
+    while(second){
+        if(first.val !== second.val){
+            reverse(newHead)
+            return false
+        }
+        first = first.next
+        second = second.next
+    }
+    reverse(newHead)
+    return true
 };
