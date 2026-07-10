@@ -4,34 +4,19 @@
  */
 var sortedSquares = function(nums) {
     let arr = [];
-    let left = -1;
-    let right = -1;
-    for(let i = 0; i < nums.length; i++){
-        if(nums[i] <= 0 && nums.length !== 1){ 
-            left = i;
-            right = i+1;
-        }
-        nums[i] *= nums[i];
-    }
-
-    if(left === -1) return nums;
-    
-    let count = 0;
-    while(left >= 0 && right < nums.length){
-        if(nums[left] <= nums[right]){
-            arr[count] = nums[left--];
+    let left = 0;
+    let right = nums.length-1;
+    let pos = nums.length-1;
+    while(left <= right){
+        let l = nums[left] * nums[left];
+        let r = nums[right] * nums[right];
+        if(l > r){
+            arr[pos--] = l;
+            left++;
         }else{
-            arr[count] = nums[right++];
+            arr[pos--] = r;
+            right--;
         }
-        count++;
-    }
-    while(left >= 0){
-        arr[count] = nums[left--];
-        count++;
-    }
-    while(right < nums.length){
-        arr[count] = nums[right++];
-        count++;
     }
     return arr;
 };
