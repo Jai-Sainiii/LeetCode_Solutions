@@ -11,9 +11,9 @@ var rotate = function(nums, k) {
 
     function reverse(start, end){
         while(start < end){
-            [nums[start], nums[end]] = [nums[end], nums[start]]
-            start++
-            end--
+            [nums[start], nums[end]] = [nums[end], nums[start]];
+            start++;
+            end--;
         }
     }
 
