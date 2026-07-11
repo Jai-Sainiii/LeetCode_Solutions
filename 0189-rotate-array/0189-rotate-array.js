@@ -6,8 +6,8 @@
 var rotate = function(nums, k) {
     if(k === 0 || nums.length === 1) return
 
-    let n = nums.length
-    k = k % n
+    let n = nums.length;
+    k = k % n;
 
     function reverse(start, end){
         while(start < end){
@@ -17,7 +17,7 @@ var rotate = function(nums, k) {
         }
     }
 
-    reverse(0, n-1)
-    reverse(0, k-1)
-    reverse(k, n-1)
+    reverse(0, n-1);
+    reverse(0, k-1);
+    reverse(k, n-1);
 };
