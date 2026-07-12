@@ -9,8 +9,10 @@ var candy = function(ratings) {
         if(ratings[i] > ratings[i-1]) arr[i] = arr[i-1] + 1
     }
 
+    let count = arr[arr.length-1]
     for(let i = ratings.length-2; i >= 0; i--){
         if(ratings[i] > ratings[i+1] && arr[i] <= arr[i+1]) arr[i] = arr[i+1] + 1
+        count += arr[i]
     }
-    return arr.reduce((a,b) => a+b, 0)
+    return count
 };
