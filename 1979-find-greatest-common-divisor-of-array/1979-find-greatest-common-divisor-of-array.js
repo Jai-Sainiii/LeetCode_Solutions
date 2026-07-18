@@ -17,18 +17,8 @@ var findGCD = function(nums) {
         else return a
     }
 
-    let min = Infinity
-    let max = -Infinity
+    let min = Math.min(...nums)
+    let max = Math.max(...nums)
 
-    for(const num of nums){
-        if(num < min){
-            min = num
-        }
-        if(num > max){
-            max = num
-        }
-    }
-
-    let ans = find(min, max)
-    return ans
+    return find(min, max)
 };
