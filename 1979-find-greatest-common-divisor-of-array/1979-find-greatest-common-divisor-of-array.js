@@ -13,12 +13,12 @@ var findGCD = function(nums) {
             }
         }
 
-        if(a === 0) return b
-        else return a
+        if(a === 0) return b;
+        else return a;
     }
 
-    let min = Math.min(...nums)
-    let max = Math.max(...nums)
+    let min = Math.min(...nums);
+    let max = Math.max(...nums);
 
-    return find(min, max)
+    return find(min, max);
 };
