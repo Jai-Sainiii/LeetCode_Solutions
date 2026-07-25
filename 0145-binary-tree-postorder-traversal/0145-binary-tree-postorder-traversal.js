@@ -12,16 +12,21 @@
  */
 var postorderTraversal = function(root) {
     let ans = [];
-    function postOrder(node){
-        if(node === null){
-            return;
+    if(!root) return [];
+    let st1 = [root];
+    let st2 = [];
+    while(st1.length){
+        let node = st1.pop();
+        st2.push(node);
+        if(node.left){
+            st1.push(node.left);
         }
-
-        postOrder(node.left);
-        postOrder(node.right);
-        ans.push(node.val);
+        if(node.right){
+            st1.push(node.right);
+        }
     }
-
-    postOrder(root);
+    while(st2.length){
+        ans.push(st2.pop().val);
+    }
     return ans;
 };
