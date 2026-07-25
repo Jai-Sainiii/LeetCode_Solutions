@@ -3,23 +3,13 @@
  * @return {number[]}
  */
 var plusOne = function(digits) {
-    let carry = 0
-    for(let i = digits.length-1; i >= 0; i--){
-        let addDigit = carry === 0 ? digits[i] + 1 : digits[i] + carry
-        if(addDigit > 9){
-            carry = 1
-            addDigit = 0
-            digits[i] = addDigit
-        } else{
-            digits[i] = addDigit
-            carry = 0
-            break
-        }  
-    }
-
-    if(carry){
-        digits.unshift(carry)
-    }
-
-    return digits
+    for (let i = digits.length - 1; i >= 0; i--) {
+        if(digits[i] < 9){
+            digits[i]++
+            return digits;
+        }
+        digits[i] = 0;
+    };
+    digits.unshift(1);
+    return digits;
 };
