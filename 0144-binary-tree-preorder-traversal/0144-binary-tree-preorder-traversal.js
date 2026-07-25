@@ -12,14 +12,19 @@
  */
 var preorderTraversal = function(root) {
     let ans = [];
-    function preOrder(node){
-        if(node === null){
-            return;
-        }
-        ans.push(node.val);
-        preOrder(node.left);
-        preOrder(node.right);
+    if(!root){
+        return [];
     }
-    preOrder(root);
-    return ans
+    let stack = [root];
+    while(stack.length){
+        let node = stack.pop();
+        ans.push(node.val);
+        if(node.right){
+            stack.push(node.right);
+        }
+        if(node.left){
+            stack.push(node.left);
+        }
+    }
+    return ans;
 };
