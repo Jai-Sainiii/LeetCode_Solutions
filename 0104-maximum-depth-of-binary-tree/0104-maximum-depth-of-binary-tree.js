@@ -14,24 +14,8 @@ var maxDepth = function(root) {
     if(!root){
         return 0;
     }
-    let que = []
-    let depth = 0
-    que.push(root)
-    while(que.length){
-        let level = []
-        let size = que.length
-        for(let i = 0; i < size; i++){
-            let node = que.shift();
-            level.push(node.val);
-            if(node.left){
-                que.push(node.left)
-            }
-            if(node.right){
-                que.push(node.right)
-            }
-        }
-        depth++
-    }
+    let leftDepth = maxDepth(root.left);
+    let rightDepth = maxDepth(root.right);
 
-    return depth;
+    return 1 + Math.max(leftDepth, rightDepth);
 };
