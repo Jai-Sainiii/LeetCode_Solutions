@@ -1,0 +1,21 @@
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var countPrimes = function(n) {
+    if(n <= 1) return 0
+
+    let count = 0
+    let isPrime = Array(n+1).fill(true)
+    for(let i = 2; i < n; i++){
+        if(isPrime[i]){
+            count++
+
+            for(let j = i * 2; j < n; j = j + i){
+                isPrime[j] = false
+            }
+        }
+    }
+
+    return count
+};
