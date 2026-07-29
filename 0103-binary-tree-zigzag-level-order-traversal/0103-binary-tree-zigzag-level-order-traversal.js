@@ -25,13 +25,12 @@ var zigzagLevelOrder = function(root) {
         for(let i = 0; i < size; i++){
             let node = que.shift();
 
-            level.push(node.val);
+            const index = flag ? size - 1 - i : i
+            level[index] = node.val;
 
             if(node.left) que.push(node.left);
             if(node.right) que.push(node.right);
         }
-
-        if(flag) level.reverse();
 
         ans.push(level);
 
