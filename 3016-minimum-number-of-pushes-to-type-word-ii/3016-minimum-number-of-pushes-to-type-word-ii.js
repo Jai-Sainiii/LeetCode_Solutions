@@ -3,19 +3,14 @@
  * @return {number}
  */
 var minimumPushes = function(word) {
-    let map = new Map()
-    for(const ch of word){
-        map.set(ch, (map.get(ch) || 0) + 1)
-    }
-
-    let sorted = [...map.entries()].sort((a, b) => b[1]-a[1]);
-    let sortedMap = new Map(sorted)
+    let freq = new Array(26).fill(0);
+    for(const ch of word) freq[ch.charCodeAt() - 97]++;
+    freq.sort((a,b) => b-a)
 
     let ans = 0
-    let count = 0
-    for(const [_, value] of sortedMap){
-        ans += value * (Math.floor(count/8) + 1)
-        count++
+    for(let i = 0; i < 26; i++){
+        count = Math.floor(i/8) + 1
+        ans += freq[i] * count
     }
 
     return ans
