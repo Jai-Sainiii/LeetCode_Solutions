@@ -1,8 +1,7 @@
 
 var MyStack = function() {
+    //Push Heavy Stack
     this.que = []
-    this.queTemp = []
-    this.size = 0
 };
 
 /** 
