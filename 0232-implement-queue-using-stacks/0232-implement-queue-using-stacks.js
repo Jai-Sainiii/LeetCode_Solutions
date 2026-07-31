@@ -9,41 +9,30 @@ var MyQueue = function() {
  * @return {void}
  */
 MyQueue.prototype.push = function(x) {
-    this.stack.push(x)
+    if(!this.stack.length) this.stack.push(x)
+    else{
+        while(this.stack.length){
+            this.tempStack.push(this.stack.pop())
+        }
+        this.stack.push(x)
+        while(this.tempStack.length){
+            this.stack.push(this.tempStack.pop())
+        }
+    }
 };
 
 /**
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
-    if(!this.tempStack.length && !this.stack.length){
-        return null
-    }
-    if(this.tempStack.length){
-        return this.tempStack.pop()
-    }
-    while(this.stack.length){
-        this.tempStack.push(this.stack.pop())
-    }
-    return this.tempStack.pop()
+    return this.stack.pop()
 };
 
 /**
  * @return {number}
  */
 MyQueue.prototype.peek = function() {
-    if(this.tempStack.length){
-        return this.tempStack[this.tempStack.length-1]
-    }
-    else if(this.stack.length){
-        while(this.stack.length){
-            this.tempStack.push(this.stack.pop())
-        }
-        return this.tempStack[this.tempStack.length-1]
-    }
-    else{
-        return null
-    }
+    return this.stack[this.stack.length-1]
 };
 
 /**
