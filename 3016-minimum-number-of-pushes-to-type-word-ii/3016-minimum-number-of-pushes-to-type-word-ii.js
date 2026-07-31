@@ -13,7 +13,7 @@ var minimumPushes = function(word) {
 
     let ans = 0
     let count = 0
-    for(const [key, value] of sortedMap){
+    for(const [_, value] of sortedMap){
         ans += value * (Math.floor(count/8) + 1)
         count++
     }
