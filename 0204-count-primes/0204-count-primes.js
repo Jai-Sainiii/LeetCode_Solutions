@@ -11,7 +11,7 @@ var countPrimes = function(n) {
         if(isPrime[i]){
             count++
 
-            for(let j = i * 2; j < n; j = j + i){
+            for(let j = i * i; j < n; j += i){
                 isPrime[j] = false
             }
         }
