@@ -8,7 +8,7 @@ var myPow = function(x, n) {
     if(n === 1) return x;
 
     function pow(x, n){
-        if(n <= 0) return 1.0;
+        if(n === 0) return 1.0;
         if(n === 1) return x;
 
         if(n%2 === 0){
