@@ -4,20 +4,20 @@
  */
 var subsetsWithDup = function(nums) {
     nums = nums.sort((a,b) => a-b)
-    let set = new Set();
+    let ans = [];
     function find(index, arr){
-        if(index === nums.length){
-            set.add(JSON.stringify(arr));
-            return;
+        ans.push([...arr]);
+
+        for(let i = index; i < nums.length; i++){
+            if(i > index && nums[i] === nums[i-1]) continue;
+
+            arr.push(nums[i]);
+            find(i+1, arr);
+
+            arr.pop();
         }
-
-        arr.push(nums[index]);
-        find(index+1, arr);
-
-        arr.pop();
-        find(index+1, arr);
     }
 
     find(0, []);
-    return [...set].map(ans => JSON.parse(ans))
+    return ans;
 };
