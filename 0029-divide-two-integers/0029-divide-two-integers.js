@@ -4,12 +4,34 @@
  * @return {number}
  */
 var divide = function(dividend, divisor) {
-    const INT_MIN = -(2 ** 31)
-    const INT_MAX = (2 ** 31) - 1
 
-    if(dividend === INT_MIN && divisor === -1) return INT_MAX
+    if(dividend === divisor) return 1;
+    if(divisor === 1) return dividend;
+    if (dividend === -Math.pow(2, 31) && divisor === -1) return Math.pow(2, 31) - 1;
 
-    if(dividend > 0 && divisor > 0 || dividend < 0 && divisor < 0) return Math.floor(dividend / divisor) 
-    else if(dividend === 0 || divisor === 0) return 0
-    else return Math.ceil(dividend / divisor) 
+    let ans = 0;
+    let sign = true;
+
+    if(dividend >= 0 && divisor < 0) sign = false;
+    if(dividend < 0 && divisor > 0) sign = false;
+
+    let n = Math.abs(dividend), d = Math.abs(divisor);
+
+    while(n >= d){
+        let temp = d
+        let count = 1
+
+        while(n >= temp+temp){
+            temp += temp;
+            count += count;
+        }
+
+        ans += count;
+        n -= temp;
+    }
+
+    if(ans > ((2 ** 31) - 1)) return 2 ** 31 - 1;
+    if(ans <= -(2 ** 31)) return -(2 ** 31);
+
+    return sign ? ans : -ans;
 };
