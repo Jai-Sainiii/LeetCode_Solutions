@@ -3,13 +3,14 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    let map = new Map()
+    if(nums.length === 1) return nums[0];
 
-    for(const num of nums){
-        map.set(num, (map.get(num) || 0) + 1)
+    let ans = nums[0];
+
+    let i = 1;
+    while(i < nums.length){
+        ans = ans ^ nums[i++];
     }
 
-    for(const [key, value] of map){
-        if(value === 1) return key
-    }
+    return ans;
 };
