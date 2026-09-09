@@ -3,20 +3,16 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    let result = []
-    function MakeSubsets(index, current){
-        if(index === nums.length){
-            result.push([...current])
-            return 
+    let result = [];
+    let subsets = 1 << nums.length;
+
+    for(let num = 0; num < subsets; num++){
+        let subset = [];
+        for(let i = 0; i < nums.length; i++){
+            if(num & (1 << i)) subset.push(nums[i]);
         }
-
-        current.push(nums[index])
-        MakeSubsets(index+1, current)
-
-        current.pop()
-
-        MakeSubsets(index+1, current)
+        result.push(subset);
     }
-    MakeSubsets(0, [])
-    return result
+
+    return result;
 };
