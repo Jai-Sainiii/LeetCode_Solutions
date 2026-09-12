@@ -3,7 +3,7 @@
  * @return {number}
  */
 var singleNumber = function(nums) {
-    //Better solution #1
+    //Better solution #1 | TC -> O(N logN) , SC -> O(1)
     // nums.sort((a,b) => a-b);
 
     // for(let i = 1; i < nums.length; i = i + 3){
@@ -14,15 +14,27 @@ var singleNumber = function(nums) {
 
 
     //Bit Manupulation 
-    let ans = 0;
-    for(let index = 0; index < 32; index++){
-        let count = 0;
-        for(let i = 0; i < nums.length; i++){
-            if(nums[i] & (1 << index)) count++;
-        }
 
-        if(count % 3 === 1) ans = ans | (1 << index);
+    //Better Solution: | TC -> O(N * 32) - Always, SC -> O(1)
+    // let ans = 0;
+    // for(let index = 0; index < 32; index++){
+    //     let count = 0;
+    //     for(let i = 0; i < nums.length; i++){
+    //         if(nums[i] & (1 << index)) count++;
+    //     }
+
+    //     if(count % 3 === 1) ans = ans | (1 << index);
+    // }
+
+    // return ans;
+
+    //Optimal Solution | 
+    let ones = 0;
+    let twos = 0;
+    for(let i = 0; i < nums.length; i++){
+        ones = (ones ^ nums[i]) & (~twos);
+        twos = (twos ^ nums[i]) & (~ones);
     }
 
-    return ans;
+    return ones;
 };
