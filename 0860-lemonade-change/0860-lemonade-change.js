@@ -3,8 +3,7 @@
  * @return {boolean}
  */
 var lemonadeChange = function(bills) {
-    let fives = 0;
-    let tens = 0;
+    let fives = 0, tens = 0;
     
     for(let i = 0; i < bills.length; i++){
         if(bills[i] === 5) fives++;
