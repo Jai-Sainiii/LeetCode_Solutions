@@ -13,11 +13,17 @@ var minGroups = function(intervals) {
     startTimes.sort((a,b) => a-b);
     endTimes.sort((a,b) => a-b);
 
-    let endptr = 0, group_count = 0;
-    for(const start of startTimes){
-        if(start > endTimes[endptr]) endptr++;
-        else group_count++;
+    let start = 0, end = 0, count = 0, maxCount = 0;
+    while(start < n){
+        if(startTimes[start] <= endTimes[end]){
+            count++
+            start++
+        } else{
+            count--;
+            end++;
+        }
+        maxCount = Math.max(maxCount, count);
     }
 
-    return group_count;
+    return maxCount;
 };
