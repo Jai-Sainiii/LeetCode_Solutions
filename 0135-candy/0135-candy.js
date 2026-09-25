@@ -3,16 +3,27 @@
  * @return {number}
  */
 var candy = function(ratings) {
-    let arr = new Array(ratings.length).fill(1)
+    let sum = 1, i = 1, n = ratings.length;
+    while(i < n){
+        while(ratings[i] === ratings[i-1]){
+            sum++;
+            i++;
+        }
+        let peak = 1;
+        while(i < n && ratings[i] > ratings[i-1]){
+            peak++;
+            sum += peak;
+            i++;
+        }
+        let down = 1;
+        while(i < n && ratings[i] < ratings[i-1]){
+            sum += down;
+            down++;
+            i++;
+        }
 
-    for(let i = 1; i < ratings.length; i++){
-        if(ratings[i] > ratings[i-1]) arr[i] = arr[i-1] + 1
+        if(down > peak) sum += down - peak;
     }
 
-    let count = arr[arr.length-1]
-    for(let i = ratings.length-2; i >= 0; i--){
-        if(ratings[i] > ratings[i+1] && arr[i] <= arr[i+1]) arr[i] = arr[i+1] + 1
-        count += arr[i]
-    }
-    return count
+    return sum;
 };
