@@ -11,29 +11,18 @@
  * @return {number[]}
  */
 var postorderTraversal = function(root) {
-    let ans = []
-    if(!root) return ans;
-
-    let stack = []
-    let curr = root
-    while(curr || stack.length){
-        if(curr){
-            stack.push(curr)
-            curr = curr.left
-        }else{
-            let node = stack[stack.length-1].right
-            if(node){
-                curr = node
-            }else{
-                node = stack.pop()
-                ans.push(node.val)
-                while(stack.length && node === stack[stack.length-1].right){
-                    node = stack.pop()
-                    ans.push(node.val)
-                }
-            }
-        }
+    let postOrder = [];
+    if(root === null) return postOrder;
+    let st1 = [], st2 = [];
+    st1.push(root);
+    while(st1.length){
+        let node = st1.pop();
+        st2.push(node.val);
+        if(node.left !== null) st1.push(node.left);
+        if(node.right !== null) st1.push(node.right);
     }
-
-    return ans;
+    while(st2.length){
+        postOrder.push(st2.pop());
+    }
+    return postOrder;
 };
