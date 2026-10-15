@@ -12,13 +12,16 @@
  */
 var maxPathSum = function(root) {
     let max = -Infinity;
-    function maxSum(node){
-        if(node === null) return 0
-        let left = Math.max(0, maxSum(node.left));
-        let right = Math.max(0, maxSum(node.right));
-        max = Math.max(max, node.val + left + right);
-        return node.val + Math.max(left, right);
+    function solve(node){
+        if(node === null) return 0;
+
+        let leftSum = Math.max(0, solve(node.left));
+        let rightSum = Math.max(0, solve(node.right));
+
+        max = Math.max(max, leftSum + rightSum + node.val);
+
+        return node.val + Math.max(leftSum, rightSum);
     }
-    maxSum(root);
+    solve(root);
     return max;
 };
