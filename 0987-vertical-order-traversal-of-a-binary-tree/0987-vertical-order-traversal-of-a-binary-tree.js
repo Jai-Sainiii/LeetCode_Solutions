@@ -11,30 +11,38 @@
  * @return {number[][]}
  */
 var verticalTraversal = function(root) {
-    if(!root) return [];
-    let que = [[root, 0, 0]];
-    let nodes = new Map();
-    while(que.length){
-        let [temp, x, y] = que.shift();
+    const ans = [];
+    let map = new Map();
+    let queue = [[root, 0, 0]];
+    let front = 0;
+    
+    while(front < queue.length){
+        let [node, row, col] = queue[front++];
 
-        if(!nodes.has(x)) nodes.set(x, new Map());
-        if(!nodes.get(x).has(y)) nodes.get(x).set(y, []);
-        nodes.get(x).get(y).push(temp.val);
+        if(!map.has(col)) map.set(col, new Map());
+        if(!map.get(col).has(row)) map.get(col).set(row, []);
 
-        if(temp.left) que.push([temp.left, x-1, y+1]);
-        if(temp.right) que.push([temp.right, x+1, y+1]);
+        map.get(col)
+           .get(row)
+           .push(node.val);
+
+        if(node.left) queue.push([node.left, row+1, col-1]);
+        if(node.right) queue.push([node.right, row+1, col+1]);
     }
 
-    let ans = [];
-    let sortedX = [...nodes.keys()].sort((a,b) => a-b);
+    const columns = [...map.keys()].sort((a,b) => a-b);
 
-    for(const x of sortedX){
-        let col = [];
-        let sortedY = [...nodes.get(x).keys()].sort((a,b) => a-b);
-        for(const y of sortedY){
-            col.push(...nodes.get(x).get(y).sort((a,b) => a-b));
+    for(const col of columns){
+        const colValues = [];
+
+        const rows = [...map.get(col).keys()].sort((a,b) => a-b);
+
+        for(const row of rows){
+            const values = map.get(col).get(row);
+            values.sort((a,b) => a-b);
+            colValues.push(...values);
         }
-        ans.push(col);
+        ans.push(colValues);
     }
 
     return ans;
