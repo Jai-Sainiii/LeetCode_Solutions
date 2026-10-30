@@ -11,11 +11,10 @@
  * @return {number[]}
  */
 var rightSideView = function(root) {
-    let ans = [];
     let que = [];
     let map = new Map();
 
-    if(!root) return ans;
+    if(!root) return [];
     que.push([root, 0]);
 
     while(que.length){
