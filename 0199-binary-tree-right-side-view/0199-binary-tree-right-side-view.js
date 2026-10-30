@@ -11,21 +11,17 @@
  * @return {number[]}
  */
 var rightSideView = function(root) {
-    let que = [];
-    let map = new Map();
+    let ans = [];
+    function solve(node, level){
+        if(!node) return;
 
-    if(!root) return [];
-    que.push([root, 0]);
+        if(level === ans.length) ans.push(node.val);
 
-    while(que.length){
-        let size = que.length;
-        for(let i = 0; i < size; i++){
-            let [node, pos] = que.shift();
-            if(node.left) que.push([node.left, pos+1]);
-            if(node.right) que.push([node.right, pos+1]);
-            map.set(pos, node.val);
-        }
+        if(node.right) solve(node.right, level+1);
+        if(node.left) solve(node.left, level+1);
     }
 
-    return [...map.values()];
+    solve(root, 0);
+
+    return ans;
 };
