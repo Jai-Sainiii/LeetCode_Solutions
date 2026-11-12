@@ -18,9 +18,8 @@ var lowestCommonAncestor = function(root, p, q) {
         let left = solve(node.left);
         let right = solve(node.right);
 
-        if(left === null) return right;
-        else if(right === null) return left;
-        else return node;
+        if(left && right) return node;
+        else return left || right;
     }
 
     return solve(root);
