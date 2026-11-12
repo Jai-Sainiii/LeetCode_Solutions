@@ -13,13 +13,14 @@
  */
 var lowestCommonAncestor = function(root, p, q) {
     function solve(node){
-        if(node === null || node === p || node === q) return node;
+        if(!node || node === p || node === q) return node;
 
         let left = solve(node.left);
         let right = solve(node.right);
 
         if(left && right) return node;
-        else return left || right;
+        
+        return left || right;
     }
 
     return solve(root);
