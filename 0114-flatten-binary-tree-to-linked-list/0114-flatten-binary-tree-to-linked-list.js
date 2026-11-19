@@ -11,18 +11,16 @@
  * @return {void} Do not return anything, modify root in-place instead.
  */
 var flatten = function(root) {
-    if(!root) return root;
+    let curr = root;
+    while(curr){
+        if(curr.left){
+            let prev = curr.left;
+            while(prev.right) prev = prev.right;
 
-    let stack = [];
-    stack.push(root);
-    while(stack.length){
-        let node = stack.pop();
-
-        if(node.right) stack.push(node.right);
-        if(node.left) stack.push(node.left);
-
-        if(stack.length) node.right = stack[stack.length-1];
-        node.left = null;
+            prev.right = curr.right;
+            curr.right = curr.left;
+            curr.left = null;
+        }
+        curr = curr.right;
     }
-
 };
