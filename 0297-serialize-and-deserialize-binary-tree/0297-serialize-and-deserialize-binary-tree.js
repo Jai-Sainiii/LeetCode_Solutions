@@ -48,16 +48,17 @@ var deserialize = function(data) {
     let que = [];
     let root = new TreeNode(Number(values[0]));
     que.push(root);
+    let front = 0;
 
-    for(let front = 1; front < values.length; front++){
-        let node = que.shift();
-        if(values[front] !== "#"){
-            let left = new TreeNode(Number(values[front]));
+    for(let i = 1; i < values.length; i++){
+        let node = que[front++];
+        if(values[i] !== "#"){
+            let left = new TreeNode(Number(values[i]));
             node.left = left;
             que.push(left);
         }
-        if(values[++front] !== "#"){
-            let right = new TreeNode(Number(values[front]));
+        if(values[++i] !== "#"){
+            let right = new TreeNode(Number(values[i]));
             node.right = right;
             que.push(right);
         }
